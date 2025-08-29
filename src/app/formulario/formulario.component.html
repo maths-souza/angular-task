@@ -1,25 +1,136 @@
 <div class="form-container">
-    <h1>Formulário de Interesse - Sua Viagem para Paris</h1>
-    <div class="form-description">
-        <p>Embarque para uma experiência inesquecível na Cidade Luz! Desfrute de 3 diárias em um charmoso hotel boutique
-            no coração de Paris, com café da manhã incluso, servido com croissants frescos e café parisiense. Explore
-            atrações icônicas como a Torre Eiffel, o Museu do Louvre e a Catedral de Notre-Dame, passeie pelas margens
-            do Rio Sena e descubra a magia dos bairros de Montmartre e Le Marais. Suas passagens de ida e volta garantem
-            uma viagem tranquila, com todo o conforto que você merece.</p>
+    <h1>Formulário de Interesse de Viagem</h1>
+    <div class="descricao">
+        <p>Escolha o destino dos seus sonhos e viva uma experiência única!
+
+            Paris – Embarque para a charmosa Cidade Luz e descubra a magia da Torre Eiffel, do Museu do Louvre e dos
+            cafés acolhedores às margens do Sena. Um pacote romântico e inesquecível!
+
+            Nova Iorque – Sinta a energia vibrante da cidade que nunca dorme! Passeie pela Times Square iluminada,
+            caminhe no Central Park, explore a Estátua da Liberdade e aproveite o melhor da vida urbana em grande
+            estilo.
+
+            Londres – Viaje para a terra da realeza e da tradição! Conheça o Big Ben, a London Eye, o Palácio de
+            Buckingham e os icônicos pubs londrinos. Uma mistura perfeita de história, cultura e modernidade.
+
+            Preencha o formulário de interesse e garanta sua oportunidade de viver momentos inesquecíveis em um desses
+            destinos incríveis. Seu próximo embarque começa aqui!</p>
     </div>
     <div class="form-content">
         <form class="example-form">
-            <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Seu nome</mat-label>
-                <input matInput placeholder="Como se chama?" value="Nome">
+            <mat-form-field appearance="fill">
+                <mat-label>Nome</mat-label>
+                <input matInput>
             </mat-form-field>
-            <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Deixe um comentário</mat-label>
-                <textarea matInput placeholder="Gostaria de saber as datas..."></textarea>
+            <mat-form-field appearance="fill">
+                <mat-label>Gênero</mat-label>
+                <mat-select>
+                    <mat-option value="one">Masculino</mat-option>
+                    <mat-option value="two">Feminino</mat-option>
+                    <mat-option value="two">Outro</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Seu comentário</mat-label>
+                <textarea matInput></textarea>
             </mat-form-field>
             <div class="button-container">
                 <button mat-raised-button color="primary">Enviar</button>
             </div>
         </form>
     </div>
+    <br>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef> Viagem </th>
+            <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Destino </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="weight">
+            <th mat-header-cell *matHeaderCellDef> Preço </th>
+            <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="symbol">
+            <th mat-header-cell *matHeaderCellDef> Aeroporto </th>
+            <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <br>
+    <mat-accordion>
+        <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Conforto
+                </mat-panel-title>
+                <mat-panel-description>
+                    Leia nossas condições de Pacote
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>
+                Conforto e praticidade: voo de ida e volta + hotel com café da manhã incluso.
+                <br>
+            </p>
+        </mat-expansion-panel>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Modo de Pagamento
+                </mat-panel-title>
+                <mat-panel-description>
+                    Clique aqui para {{panelOpenState ? 'conferir' : 'conferir'}}
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>Cartão de crédito até 36x
+                <br>
+                Cartão de Débito
+            </p>
+        </mat-expansion-panel>
+    </mat-accordion>
 </div>
+<br>
+
+<mat-grid-list cols="3" rowHeight="2:1">
+
+    <mat-grid-tile>
+        <img src="https://plus.unsplash.com/premium_photo-1661919210043-fd847a58522d?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="">
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <img src="https://images.unsplash.com/photo-1485738422979-f5c462d49f74?q=80&w=1199&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="">
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <img src="https://images.unsplash.com/photo-1533929736458-ca588d08c8be?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="">
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <img src="https://images.unsplash.com/photo-1585944285854-d06c019aaca3?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="">
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <img src="https://images.unsplash.com/photo-1605617697069-959ec9dfc9de?q=80&w=1250&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="">
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <img src="https://images.unsplash.com/photo-1546885692-8e7c1b59da2c?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="">
+    </mat-grid-tile>
+</mat-grid-list>
+<br>
